@@ -14,16 +14,9 @@
 - Iniciar Elasticsearch y Kibana: $ docker-compose up -d (desde el directorio /.venv/app)
 - Indexar datos sintéticos: $ python3 generate_data.py
 
-## Posibles vías de mejora:
-- 
-
-## Problemas / Retos encontrados:
-- Seguridad (los servicios no se vinculaban debido al https)
+## Posibles vías de mejora / Problemas / Retos encontrados:
+- Kibana no se vinculaba a elasticsearch debido al https en los elasticsearch hosts, puesto a que la seguridad estaba deshabilitada
+- Establecer la seguridad/certificados, ya que los servicios no aprueban el healthcheck y ninguno conseguía levantarse correctamente
 
 ## Alternativas posibles:
-- Bases de datos NoSQL como InfluxDB o MongoDB
 - Servicios de visualización como Grafana o Prometheus
-
-https://realpython.com/python-virtual-environments-a-primer/
-https://www.elastic.co/es/blog/getting-started-with-the-elastic-stack-and-docker-compose
-https://www.elastic.co/guide/en/kibana/current/docker.html#_remove_docker_containers
