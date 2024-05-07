@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import time
 import random
 import logging.config
+import urllib3
 
 # Deshabilitar logs de librerías externas
 logging.config.dictConfig({
@@ -12,6 +13,9 @@ logging.config.dictConfig({
 # Establecer logger
 logging.basicConfig(format='%(asctime)s [%(levelname)s]   %(name)s | %(message)s', datefmt='%m/%d/%Y %H:%M:%S', encoding='utf-8', level=logging.DEBUG)
 logger = logging.getLogger('generate_data')
+
+# Desactivar warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 # Función que genera los datos sintéticos aleatoriamente
@@ -35,7 +39,7 @@ def generate_wind_data():
 # Función principal de envío de datos
 def main():
     # Configura la conexión a Elasticsearch
-    es = Elasticsearch(hosts=["http://localhost:9200"])
+    es = Elasticsearch("https://elastic:elasticpwd@localhost:9200/", verify_certs=False)
 
     # Comprobar si el clúster de Elasticsearch está abierto
     if (es.ping()):
